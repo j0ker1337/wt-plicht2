@@ -2,17 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
-       
     </h:head>
-    <c:set var="User" value="#{userController.}" scope="request" />
-            #{User.name}
-            #{User.id}
-            #{User.geburt}
-            <h:dataTable var="film" value="#{User.likes}">
+    <h:body>
+       
+        <h:dataTable var="film" value="#{filmController.findAllFilm()}">
             <h:column>
                 <f:facet name = "header">id</f:facet>
                 #{film.filmID}</h:column>
@@ -20,8 +17,10 @@
                 <f:facet name = "header">name</f:facet>
                 #{film.name}</h:column>
 
-            </h:dataTable>
-            
-
-    
+                <c:forEach var="film" items="#{user.likes}">
+           #{film.id} #{film.name}
+          </c:forEach>
+        </h:dataTable>  
+    </h:body>
 </html>
+
